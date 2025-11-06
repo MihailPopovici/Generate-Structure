@@ -50,3 +50,19 @@ def create_structure(root_path, structure_dict):
     print(f"\nStructure created successfully in: {os.path.abspath(root_path)}")
 
 
+if __name__ == "__main__":
+    if len(sys.argv) != 3:
+        print("Usage: python create_structure.py <root_folder_path> <structure_json_file_path>")
+        print("\nExample:")
+        print('  python create_structure.py root_folder structure.json')
+        print('\nJSON file content should be:')
+        print('  {"dir1": {"dir2": {"file1": "content1", "file2": "content2"}, "file3": "content3"}, "file4": "content4"}')
+        sys.exit(1)
+    
+    root_folder_path = sys.argv[1]
+    structure_json_file_path = sys.argv[2]
+
+    structure = load_structure_from_json(structure_json_file_path)
+
+    create_structure(root_folder_path, structure)
+    
